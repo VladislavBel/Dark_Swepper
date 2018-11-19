@@ -13,6 +13,9 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import java.io.File;
 
 public class MinesweeperApp extends Application {
 
@@ -32,13 +35,12 @@ public class MinesweeperApp extends Application {
 
         for (int y = 0; y < Y_TILES; y++) {
             for (int x = 0; x < X_TILES; x++) {
-                Tile tile = new Tile(x, y, Math.random() < 0.2);
+                Tile tile = new Tile(x, y, Math.random() < 0.20);
 
                 grid[x][y] = tile;
                 root.getChildren().add(tile);
             }
         }
-
         for (int y = 0; y < Y_TILES; y++) {
             for (int x = 0; x < X_TILES; x++) {
                 Tile tile = grid[x][y];
@@ -103,7 +105,7 @@ public class MinesweeperApp extends Application {
             this.y = y;
             this.hasBomb = hasBomb;
 
-            border.setStroke(Color.LIGHTGRAY);
+            border.setStroke(Color.GREEN);
 
             text.setFont(Font.font(18));
             text.setText(hasBomb ? "X" : "");
@@ -118,12 +120,14 @@ public class MinesweeperApp extends Application {
         }
 
         public void open() {
+
+
             if (isOpen)
                 return;
 
             if (hasBomb) {
                System.out.println("Game Over");
-               scene.setRoot(createContent());
+                scene.setRoot(createContent());
                return;
             }
 
@@ -137,9 +141,11 @@ public class MinesweeperApp extends Application {
         }
     }
 
+
     @Override
     public void start(Stage stage) throws Exception {
         scene = new Scene(createContent());
+
 
         stage.setScene(scene);
         stage.show();
