@@ -126,7 +126,7 @@ public class MinesweeperApp extends Application {
                 return;
 
             if (hasBomb) {
-               System.out.println("Game Over");
+               System.out.println("You Died");
                 scene.setRoot(createContent());
                return;
             }
